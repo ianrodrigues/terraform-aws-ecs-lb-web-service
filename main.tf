@@ -185,6 +185,12 @@ resource "aws_lb_target_group" "this" {
     healthy_threshold = 2
   }
 
+  stickiness {
+    enabled         = var.load_balancer_stickiness_enabled
+    type            = "lb_cookie"
+    cookie_duration = var.load_balancer_stickiness_duration
+  }
+
   tags = merge(var.tags, local.tags)
 
   lifecycle {
