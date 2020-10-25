@@ -106,6 +106,28 @@ variable "container_port" {
   description = "The port number on the container that is bound to the user-specified or automatically assigned host port."
 }
 
+variable "container_extra_environment" {
+  type = list(object({
+    name  = string
+    value = string
+  }))
+
+  default = []
+
+  description = "Extra environment variables to pass to a container."
+}
+
+variable "container_extra_secrets" {
+  type = list(object({
+    name      = string
+    valueFrom = string
+  }))
+
+  default = []
+
+  description = "Extra secrets to pass to the container."
+}
+
 variable "logs_retention_in_days" {
   type        = number
   default     = 14
