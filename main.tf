@@ -283,8 +283,8 @@ resource "aws_ecs_service" "this" {
   }
 
   network_configuration {
-    assign_public_ip = length(var.public_subnet_ids) ? false : true
-    subnets          = length(var.public_subnet_ids) ? var.private_subnet_ids : var.public_subnet_ids
+    assign_public_ip = length(var.public_subnet_ids) == 0 ? false : true
+    subnets          = length(var.public_subnet_ids) == 0 ? var.private_subnet_ids : var.public_subnet_ids
     security_groups  = var.security_group_ids
   }
 
