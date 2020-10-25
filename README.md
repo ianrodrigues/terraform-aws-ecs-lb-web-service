@@ -106,3 +106,12 @@ module "nginx_backed_service" {
 | Name | Description |
 |------|-------------|
 | this\_tags | Key-value map of resource tags. |
+
+## Credits
+
+- [Ian Rodrigues](https://github.com/ianrodrigues)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
