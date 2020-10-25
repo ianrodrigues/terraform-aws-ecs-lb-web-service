@@ -80,6 +80,8 @@ module "nginx_backed_service" {
 |------|-------------|------|---------|:--------:|
 | app | Name of the application. | `string` | n/a | yes |
 | cluster | ARN of an ECS cluster. | `string` | n/a | yes |
+| container\_extra\_environment | Extra environment variables to pass to a container. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
+| container\_extra\_secrets | Extra secrets to pass to the container. | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
 | container\_image | The image used to start a container. | `string` | n/a | yes |
 | container\_port | The port number on the container that is bound to the user-specified or automatically assigned host port. | `number` | n/a | yes |
 | cpu | (Optional) The number of cpu units used by the task. | `number` | `256` | no |
@@ -88,6 +90,8 @@ module "nginx_backed_service" {
 | load\_balancer\_arn | The ARN of the load balancer associated with service. | `string` | n/a | yes |
 | load\_balancer\_rule\_path | (Optional) A path to match against the request URL. | `string` | `"/"` | no |
 | load\_balancer\_rule\_priority | (Optional) The priority for the rule between 1 and 50000. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority. | `number` | `null` | no |
+| load\_balancer\_stickiness\_duration | (Optional) The time period, in seconds, during which requests from a client should be routed to the same target. | `number` | `86400` | no |
+| load\_balancer\_stickiness\_enabled | (Optional) Whether to enabled target group cookie stickiness. | `bool` | `true` | no |
 | logs\_retention\_in\_days | (Optional) Specifies the number of days you want to retain log events in the specified log group. | `number` | `14` | no |
 | memory | (Optional) The amount (in MiB) of memory used by the task. | `number` | `512` | no |
 | name | Name of the service. It will be used to name the resources of this module. | `string` | n/a | yes |
@@ -99,4 +103,6 @@ module "nginx_backed_service" {
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| this\_tags | Key-value map of resource tags. |
