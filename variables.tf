@@ -85,6 +85,18 @@ variable "load_balancer_rule_priority" {
   description = "(Optional) The priority for the rule between 1 and 50000. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority."
 }
 
+variable "load_balancer_stickiness_enabled" {
+  type        = bool
+  default     = true
+  description = "(Optional) Whether to enabled target group cookie stickiness."
+}
+
+variable "load_balancer_stickiness_duration" {
+  type        = number
+  default     = 86400
+  description = "(Optional) The time period, in seconds, during which requests from a client should be routed to the same target."
+}
+
 variable "cluster" {
   type        = string
   description = "ARN of an ECS cluster."
