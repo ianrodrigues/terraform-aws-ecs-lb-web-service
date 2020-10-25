@@ -230,7 +230,7 @@ resource "aws_ecs_task_definition" "this" {
       },
     ]
 
-    environment = [
+    environment = concat([
       {
         name  = "ECS_APP_NAME"
         value = var.app
@@ -243,7 +243,9 @@ resource "aws_ecs_task_definition" "this" {
         name  = "ECS_SERVICE_NAME"
         value = var.name
       },
-    ]
+    ], var.container_extra_environment)
+
+    secrets = concat([], var.container_extra_secrets)
 
     logConfiguration = {
       logDriver = "awslogs"
